@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import  leaf  from './leaf';
+import  game  from './game';
 
 export default combineReducers({
-  leaf
+  game
 });
 

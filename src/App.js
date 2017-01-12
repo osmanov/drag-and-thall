@@ -1,21 +1,30 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React from 'react';
+//import logo from './logo.svg';
+import { connect } from 'react-redux';
 import './App.css';
+import Board from './components/Board';
+import { updateKnightPosition } from './redux/modules/game'
 
-class App extends Component {
+class App extends React.Component {
   render() {
+    console.log('!!!')
+    console.log(this.props)
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Board {...this.props} />
       </div>
     );
   }
 }
+const mapActionCreators = (dispatch) => ({
+  updatePosition: (position) => dispatch(updateKnightPosition(position))
+})
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    game:state.game
+  }
+
+}
+
+export default connect(mapStateToProps, mapActionCreators)(App)
